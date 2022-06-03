@@ -25,7 +25,7 @@ const MyNotes = () => {
 									flex: 1,
 									cursor: "pointer",
 									alignSelf: "center",
-									fontsize: "1.5rem",
+									fontsize: "1.5rem", 
 								}}
 							>
 								<Accordion.Toggle as={Card.Text} variant='link' eventKey='0'>
