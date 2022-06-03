@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Cantata+One&family=Work+Sans:wght@200&display=swap");
+
+.mainBack {
+	min-height: 93vh;
+	display: flex;
+	padding: 10px 0;
+
+}
+
+.page{
+  width: 100%;
+}
+
+.heading{
+	font-family: 'Work Sans', sans-serif;
+	font-size: 2.5rem;
+	font-weight: 200;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+	.heading{
+		text-align: center;
+		font-size: 2rem;
+	}
+}
