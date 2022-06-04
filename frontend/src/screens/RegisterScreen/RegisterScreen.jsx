@@ -1,11 +1,12 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MainScreen from "../../components/MainScreen";
 import bsCustomFileInput from "bs-custom-file-input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage";
-import axios from "axios";
 import Loading from "../../components/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../actions/userActions";
 
 const RegisterScreen = () => {
 	bsCustomFileInput.init();
@@ -19,41 +20,24 @@ const RegisterScreen = () => {
 	const [message, setMessage] = useState(null);
 	const [imgMessage, setImgMessage] = useState(null);
 
-	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();
+	const userRegister = useSelector((state) => state.userRegister);
+	const { loading, error, userInfo } = userRegister;
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (userInfo) navigate("/mynotes");
+	}, [userInfo, navigate]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		if (password !== confirmPassword) {
-			setMessage("Password does not match");
+			setMessage("Passwords do not match");
 		} else {
-			setMessage(null);
-			// console.log(email, name, img, password, confirmPassword);
-			try {
-				const config = {
-					headers: {
-						"Content-Type": "application/json",
-					},
-				};
-				setLoading(true);
-				const { data } = await axios.post(
-					"http://localhost:5000/api/users",
-					{
-						email,
-						name,
-						img,
-						password,
-					},
-					config
-				);
-				console.log(data);
-				setLoading(false);
-				localStorage.setItem("userInfo", JSON.stringify(data));
-			} catch (error) {
-				setError(error.response.data.message);
-				setLoading(false);
-			}
+			console.log(email, name, img, password);
+			dispatch(register(email, name, img, password ));
 		}
 	};
 
@@ -139,7 +123,7 @@ const RegisterScreen = () => {
 						<Form.Label size='lg'>Profile Picture</Form.Label>
 						<Form.File
 							onChange={(e) => postDetails(e.target.files[0])}
-							calssName='custom-file-input'
+							className='custom-file-input'
 							id='custom-file'
 							type='file'
 							label='Upload Profile Picture'
