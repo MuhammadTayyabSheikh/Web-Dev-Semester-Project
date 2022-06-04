@@ -12,6 +12,15 @@ connectDB();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
+const cors = require("cors");
+const corsOptions = {
+  origin: '*',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions));
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
