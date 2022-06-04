@@ -2,7 +2,8 @@ const express = require('express');
 const notes = require('./data/notes');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const userRouter = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes');
+const noteRoutes = require('./routes/noteRoutes');
 const { urlencoded } = require('express');
 const { notFound, errorHandler } = require('./middlewares/errorMiddlewares');
 
@@ -15,7 +16,7 @@ app.use(urlencoded({ extended: true }));
 const cors = require("cors");
 const corsOptions = {
   origin: '*',
-  credentials: true,            //access-control-allow-credentials:true
+  credentials: true,
   optionSuccessStatus: 200,
 }
 
@@ -33,7 +34,9 @@ app.get('/', (req, res) => {
 //   res.json(notes.find(note => note.id === parseInt(req.params.id)));
 // });
 
-app.use('/api/users', userRouter);
+app.use('/api/users', userRoutes);
+app.use('/api/notes', noteRoutes);
+
 app.use(notFound, errorHandler);
 
 const PORT = process.env.PORT || 5000;
