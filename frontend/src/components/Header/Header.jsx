@@ -10,12 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
-const Header = () => {
+const Header = ({ setSearch }) => {
 	const dispatch = useDispatch();
 
-	const userLogin = useSelector((state) => state.userLogin);
+	// const userLogin = useSelector((state) => state.userLogin);
 
-	const { userInfo } = userLogin;
+	// const { userInfo } = userLogin;
 	const navigate = useNavigate();
 	const handleLogout = () => {
 		dispatch(logout());
@@ -29,8 +29,8 @@ const Header = () => {
 		>
 			<Container>
 				<Navbar.Brand>
-					<Link to='/' className="d-flex gap-2">
-						<img src='./favicon2.png' alt='' />
+					<Link to='/' className='d-flex gap-2'>
+						<img src='../../../public/favicon2.png' alt='' />
 						twoNote
 					</Link>
 				</Navbar.Brand>
@@ -43,6 +43,7 @@ const Header = () => {
 								placeholder='Search'
 								className='me-2'
 								aria-label='Search'
+								onChange={(e) => setSearch(e.target.value)}
 							/>
 						</Form>
 					</Nav>

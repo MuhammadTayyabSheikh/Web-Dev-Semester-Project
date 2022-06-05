@@ -26,14 +26,6 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-// app.get('/api/notes', (req, res) => {
-//   res.json(notes);
-// });
-
-// app.get('/api/notes/:id', (req, res) => {
-//   res.json(notes.find(note => note.id === parseInt(req.params.id)));
-// });
-
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
 

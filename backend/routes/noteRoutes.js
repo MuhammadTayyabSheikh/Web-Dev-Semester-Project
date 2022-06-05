@@ -18,7 +18,7 @@ router.route('/create').post(protect, createNote);
 
 router.route('/:id')
   .get(getNoteById)
+  .delete(protect, deleteNote)
   .put(protect, updateNote)
-  .delete(protect, deleteNote);
 
 module.exports = router;
