@@ -13,9 +13,9 @@ import { logout } from "../../actions/userActions";
 const Header = ({ setSearch }) => {
 	const dispatch = useDispatch();
 
-	// const userLogin = useSelector((state) => state.userLogin);
+	const userLogin = useSelector((state) => state.userLogin);
 
-	// const { userInfo } = userLogin;
+	const { userInfo } = userLogin;
 	const navigate = useNavigate();
 	const handleLogout = () => {
 		dispatch(logout());
@@ -34,36 +34,51 @@ const Header = ({ setSearch }) => {
 						twoNote
 					</Link>
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls='navbarScroll' />
-				<Navbar.Collapse id='navbarScroll'>
-					<Nav className='m-auto'>
-						<Form className='d-flex'>
-							<FormControl
-								type='search'
-								placeholder='Search'
-								className='me-2'
-								aria-label='Search'
-								onChange={(e) => setSearch(e.target.value)}
-							/>
-						</Form>
-					</Nav>
-					<Nav
-						className=' my-2 my-lg-0'
-						style={{ maxHeight: "100px" }}
-						navbarScroll
-					>
-						<Nav.Link href='/mynotes'>
-							{/* <Link to='/mynotes'> */}
-							My Notes
-							{/* </Link> */}
+				{userInfo ? (
+					<>
+						<Navbar.Toggle aria-controls='navbarScroll' />
+						<Navbar.Collapse id='navbarScroll'>
+							<Nav className='m-auto'>
+								<Form className='d-flex'>
+									<FormControl
+										type='search'
+										placeholder='Search'
+										className='me-2'
+										aria-label='Search'
+										onChange={(e) => setSearch(e.target.value)}
+									/>
+								</Form>
+							</Nav>
+							<Nav
+								className=' my-2 my-lg-0'
+								style={{ maxHeight: "100px" }}
+								navbarScroll
+							>
+								<Nav.Link>
+									<Link to='/mynotes'>My Notes</Link>
+								</Nav.Link>
+								<NavDropdown
+									title={userInfo?.name}
+									id='navbarScrollingDropdown'
+								>
+									<NavDropdown.Item href='/profile '>
+										My Profile
+									</NavDropdown.Item>
+									<NavDropdown.Divider />
+									<NavDropdown.Item onClick={handleLogout}>
+										Logout
+									</NavDropdown.Item>
+								</NavDropdown>
+							</Nav>
+						</Navbar.Collapse>
+					</>
+				) : (
+					<Nav>
+						<Nav.Link>
+							<Link to='/login'>Login</Link>
 						</Nav.Link>
-						<NavDropdown title='Muhammad Tayyab' id='navbarScrollingDropdown'>
-							<NavDropdown.Item href='#action3'>My Profile</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-						</NavDropdown>
 					</Nav>
-				</Navbar.Collapse>
+				)}
 			</Container>
 		</Navbar>
 	);

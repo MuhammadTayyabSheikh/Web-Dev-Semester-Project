@@ -10,8 +10,8 @@ import { register } from "../../actions/userActions";
 
 const RegisterScreen = () => {
 	bsCustomFileInput.init();
-	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
 	const [img, setImg] = useState(
 		"https://icon-library.com/images/2018/3209069_happy-meme-pepe-the-frog-drinking-coffee-transparent.png"
 	);
@@ -36,7 +36,7 @@ const RegisterScreen = () => {
 		if (password !== confirmPassword) {
 			setMessage("Passwords do not match");
 		} else {
-			dispatch(register(email, name, img, password ));
+			dispatch(register(name, email, password, img));
 		}
 	};
 
@@ -79,7 +79,7 @@ const RegisterScreen = () => {
 					<Form.Group className='mb-3' controlId='name'>
 						<Form.Label>Name</Form.Label>
 						<Form.Control
-							type='name'
+							type='text'
 							placeholder='Enter your name'
 							value={name}
 							onChange={(e) => setName(e.target.value)}
