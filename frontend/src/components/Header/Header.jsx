@@ -23,10 +23,16 @@ const Header = () => {
 	};
 
 	return (
-		<Navbar expand='lg' className='navbar navbar-expand-lg navbar-dark bg-dark'>
+		<Navbar
+			expand='lg'
+			className='navbar navbar-expand-lg navbar-dark bg-dark sticky-top'
+		>
 			<Container>
 				<Navbar.Brand>
-					<Link to='/'>twoNote</Link>
+					<Link to='/' className="d-flex gap-2">
+						<img src='./favicon2.png' alt='' />
+						twoNote
+					</Link>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='navbarScroll' />
 				<Navbar.Collapse id='navbarScroll'>

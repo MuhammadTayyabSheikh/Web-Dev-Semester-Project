@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MainScreen from "../../components/MainScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { listNotes } from "../../actions/notesActions";
@@ -16,9 +16,14 @@ const MyNotes = () => {
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
 
+	const noteCreate = useSelector((state) => state.noteCreate);
+	const { success: successCreate } = noteCreate;
+
+	const navigate = useNavigate();
 	useEffect(() => {
 		dispatch(listNotes());
-	}, [dispatch]);
+		if (!userInfo) navigate("/");
+	}, [dispatch, successCreate, navigate, userInfo]);
 
 	const deleteHandler = (id) => {
 		if (window.confirm("Are you sure?")) {
@@ -26,12 +31,12 @@ const MyNotes = () => {
 	};
 	return (
 		<MainScreen title={`Welcome Back ${userInfo.name}...`}>
-			<Link to='createnote'>
+			<Link to='/createNote'>
 				<Button variant='success'>Create new Note</Button>
 			</Link>
 			{error && <ErrorMessage variant='warning'>{error}</ErrorMessage>}
 			{loading && <Loading />}
-			{notes?.map((note) => (
+			{notes?.reverse().map((note) => (
 				<Accordion>
 					<Card className='my-3'>
 						<Card.Header className='d-flex'>
