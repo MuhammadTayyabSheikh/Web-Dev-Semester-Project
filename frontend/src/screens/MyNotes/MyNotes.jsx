@@ -1,20 +1,37 @@
+import { useEffect, useState } from "react";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../components/MainScreen";
-import notes from "../../data/notes";
+import { useDispatch, useSelector } from "react-redux";
+import { listNotes } from "../../actions/notesActions";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const MyNotes = () => {
+	const dispatch = useDispatch();
+	const notesList = useSelector((state) => state.notesList);
+
+	const { loading, notes, error } = notesList;
+
+	const userLogin = useSelector((state) => state.userLogin);
+	const { userInfo } = userLogin;
+
+	useEffect(() => {
+		dispatch(listNotes());
+	}, [dispatch]);
+
 	const deleteHandler = (id) => {
 		if (window.confirm("Are you sure?")) {
 		}
 	};
-
 	return (
-		<MainScreen title={"Welcome Back Tayyab"}>
+		<MainScreen title={`Welcome Back ${userInfo.name}...`}>
 			<Link to='createnote'>
 				<Button variant='success'>Create new Note</Button>
 			</Link>
-			{notes.map((note) => (
+			{error && <ErrorMessage variant='warning'>{error}</ErrorMessage>}
+			{loading && <Loading />}
+			{notes?.map((note) => (
 				<Accordion>
 					<Card className='my-3'>
 						<Card.Header className='d-flex'>
@@ -25,10 +42,10 @@ const MyNotes = () => {
 									flex: 1,
 									cursor: "pointer",
 									alignSelf: "center",
-									fontsize: "1.5rem", 
+									fontSize: "1.5rem",
 								}}
 							>
-								<Accordion.Toggle as={Card.Text} variant='link' eventKey='0'>
+								<Accordion.Toggle as={Card.Title} variant='link' eventKey='0'>
 									{note.title}
 								</Accordion.Toggle>
 							</span>
@@ -47,14 +64,19 @@ const MyNotes = () => {
 						</Card.Header>
 						<Accordion.Collapse eventKey='0'>
 							<Card.Body>
-								<h6>
-									<Badge bg='primary'>Category - {note.category}</Badge>
-								</h6>
+								<Badge className='mb-2' bg='primary'>
+									Category - {note.category}
+								</Badge>
 								<blockquote className='blockquote mb-0'>
 									<p className='text-light'>{note.content}</p>
-									<footer className='blockquote-footer'>
-										Created on - date
-									</footer>
+									<small>
+										<footer className='mt-1 blockquote-footer small'>
+											Created on{" "}
+											<cite title='Source Title'>
+												{note.createdAt.substring(0, 10)}
+											</cite>
+										</footer>
+									</small>
 								</blockquote>
 							</Card.Body>
 						</Accordion.Collapse>
