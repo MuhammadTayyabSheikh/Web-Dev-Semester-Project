@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNoteAction, listNotes } from "../../actions/notesActions";
 import Loading from "../../components/Loading";
 import ErrorMessage from "../../components/ErrorMessage";
+import ReactMarkdown from "react-markdown";
 
-const MyNotes = ({search}) => {
+const MyNotes = ({ search }) => {
 	const dispatch = useDispatch();
 	const notesList = useSelector((state) => state.notesList);
 
@@ -60,7 +61,9 @@ const MyNotes = ({search}) => {
 			{loading && <Loading />}
 			{notes
 				?.reverse()
-				.filter((filteredNote) => filteredNote.title.toLowerCase().includes(search.toLowerCase()))
+				.filter((filteredNote) =>
+					filteredNote.title.toLowerCase().includes(search.toLowerCase())
+				)
 				.map((note) => (
 					<Accordion>
 						<Card className='my-3'>
@@ -94,13 +97,13 @@ const MyNotes = ({search}) => {
 							</Card.Header>
 							<Accordion.Collapse eventKey='0'>
 								<Card.Body>
-									<Badge className='mb-2' bg='primary'>
+									<Badge className='bg-primary mb-2'>
 										Category - {note.category}
 									</Badge>
 									<blockquote className='blockquote mb-0'>
-										<p className='text-light'>{note.content}</p>
+										<ReactMarkdown className='text-light'>{note.content}</ReactMarkdown>
 										<small>
-											<footer className='mt-1 blockquote-footer small'>
+											<footer className='mt-1 mb-0 blockquote-footer small'>
 												Created on{" "}
 												<cite title='Source Title'>
 													{note.createdAt.substring(0, 10)}

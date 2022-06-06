@@ -6,6 +6,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import ErrorMessage from "./../../components/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../actions/userActions";
+import './profileScreen.css';
 
 const ProfileScreen = () => {
 	const [name, setName] = useState("");
@@ -14,7 +15,6 @@ const ProfileScreen = () => {
 	const [img, setImg] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [imgMessage, setImgMessage] = useState("");
-	console.log(name);
 	const dispatch = useDispatch();
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
@@ -72,7 +72,7 @@ const ProfileScreen = () => {
 	return (
 		<MainScreen title='Edit Profile'>
 			<div>
-				<Row className='profileContainer'>
+				<Row className='d-flex m-3 profileContainer'>
 					<Col md={6}>
 						<Form onSubmit={handleSubmit}>
 							{loading && <div>Loading...</div>}
