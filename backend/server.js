@@ -12,6 +12,7 @@ dotenv.config();
 connectDB();
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
+const path = require('path');
 
 const cors = require("cors");
 const corsOptions = {
@@ -22,12 +23,21 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
 app.use('/api/users', userRoutes);
 app.use('/api/notes', noteRoutes);
+
+__dirname = path.resolve();
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('Hello World');
+  });
+}
 
 app.use(notFound, errorHandler);
 
