@@ -6,7 +6,7 @@ import { Row, Col, Form, Button } from "react-bootstrap";
 import ErrorMessage from "./../../components/ErrorMessage";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../actions/userActions";
-import './profileScreen.css';
+import "./profileScreen.css";
 
 const ProfileScreen = () => {
 	const [name, setName] = useState("");
@@ -124,17 +124,35 @@ const ProfileScreen = () => {
 							{imgMessage && (
 								<ErrorMessage variant='warning'>{imgMessage}</ErrorMessage>
 							)}
+							<Form.Group controlId='formFileMultiple' className='mb-3'>
+								<Form.Label>Multiple files input example</Form.Label>
+								<Form.Control type='file' multiple />
+							</Form.Group>
 							<Form.Group className='mb-3' controlId='img'>
 								<Form.Label size='lg'>Profile Picture</Form.Label>
-								<Form.File
-									onChange={(e) => postDetails(e.target.files[0])}
-									className='custom-file-input'
-									id='custom-file'
-									type='file'
-									label='Upload Profile Picture'
-									custom
-									size='lg'
-								/>
+								<div class='panel-body'>
+									<div class='input-group'>
+										<input
+											id='uploadFile'
+											class='form-control'
+											placeholder='Choose File'
+											disabled='disabled'
+										/>
+										<div class='input-group-btn'>
+											<div class='fileUpload btn btn-primary'>
+												<span>
+													<i class='glyphicon glyphicon-upload'></i> Upload
+												</span>
+												<input
+													id='uploadBtn'
+													type='file'
+													class='upload'
+													onChange={(e) => postDetails(e.target.files[0])}
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
 							</Form.Group>
 							<Button variant='success' className='mt-2' type='submit'>
 								Update

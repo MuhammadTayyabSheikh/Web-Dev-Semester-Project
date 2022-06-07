@@ -7,6 +7,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../actions/userActions";
+import "./RegisterScreen.css";
 
 const RegisterScreen = () => {
 	bsCustomFileInput.init();
@@ -32,6 +33,11 @@ const RegisterScreen = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		if (name === "" || email === "") {
+			setMessage("Please fill all the fields");
+			return;
+		}
 
 		if (password !== confirmPassword) {
 			setMessage("Passwords do not match");
@@ -120,16 +126,31 @@ const RegisterScreen = () => {
 					)}
 					<Form.Group className='mb-3' controlId='img'>
 						<Form.Label size='lg'>Profile Picture</Form.Label>
-						<Form.File
-							onChange={(e) => postDetails(e.target.files[0])}
-							className='custom-file-input'
-							id='custom-file'
-							type='file'
-							label='Upload Profile Picture'
-							custom
-							size='lg'
-						/>
+						<div class='panel-body'>
+							<div class='input-group'>
+								<input
+									id='uploadFile'
+									class='form-control'
+									placeholder='Choose File'
+									disabled='disabled'
+								/>
+								<div class='input-group-btn'>
+									<div class='fileUpload btn btn-primary'>
+										<span>
+											<i class='glyphicon glyphicon-upload'></i> Upload
+										</span>
+										<input
+											id='uploadBtn'
+											type='file'
+											class='upload'
+											onChange={(e) => postDetails(e.target.files[0])}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
 					</Form.Group>
+
 					<Button variant='success' className='mt-2' type='submit'>
 						Register
 					</Button>
