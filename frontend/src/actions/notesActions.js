@@ -33,7 +33,7 @@ export const createNoteAction = (title, content, category) => async (dispatch, g
       },
     }
     const { data } = await axios.post(
-      "http://localhost:5000/api/notes/create",
+      "https://two-note-backend.herokuapp.com/notes/create",
       { title, content, category },
       config
     );
@@ -92,7 +92,7 @@ export const deleteNoteAction = (id) => async (dispatch, getState) => {
       },
     }
     const { data } = await axios.delete(
-      `http://localhost:5000/api/notes/${id}`,
+      `https://two-note-backend.herokuapp.com/api/notes/${id}`,
       config
     );
 
