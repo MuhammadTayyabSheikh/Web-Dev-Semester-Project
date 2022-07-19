@@ -12,7 +12,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "http://localhost:5000/api/users/login",
+      "https://two-note-backend.herokuapp.com/api/users/login/",
       {
         email,
         password,
@@ -45,7 +45,7 @@ export const register = (name, email, password, img) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "http://localhost:5000/api/users",
+      "https://two-note-backend.herokuapp.com/api/users/",
       {
         name,
         email,
@@ -79,7 +79,7 @@ export const updateUser = (name, email, password, img) => async (dispatch, getSt
       },
     }
 
-    const { data } = await axios.post('http://localhost:5000/api/users/profile', {
+    const { data } = await axios.post('https://two-note-backend.herokuapp.com/api/users/profile/', {
       name, email, password, img
     }, config);
 

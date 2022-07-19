@@ -124,29 +124,25 @@ const ProfileScreen = () => {
 							{imgMessage && (
 								<ErrorMessage variant='warning'>{imgMessage}</ErrorMessage>
 							)}
-							<Form.Group controlId='formFileMultiple' className='mb-3'>
-								<Form.Label>Multiple files input example</Form.Label>
-								<Form.Control type='file' multiple />
-							</Form.Group>
 							<Form.Group className='mb-3' controlId='img'>
 								<Form.Label size='lg'>Profile Picture</Form.Label>
-								<div class='panel-body'>
-									<div class='input-group'>
+								<div className='panel-body'>
+									<div className='input-group'>
 										<input
 											id='uploadFile'
-											class='form-control'
+											className='form-control'
 											placeholder='Choose File'
 											disabled='disabled'
 										/>
-										<div class='input-group-btn'>
-											<div class='fileUpload btn btn-primary'>
+										<div className='input-group-btn'>
+											<div className='fileUpload btn btn-primary'>
 												<span>
-													<i class='glyphicon glyphicon-upload'></i> Upload
+													<i className='glyphicon glyphicon-upload'></i> Upload
 												</span>
 												<input
 													id='uploadBtn'
 													type='file'
-													class='upload'
+													className='upload'
 													onChange={(e) => postDetails(e.target.files[0])}
 												/>
 											</div>

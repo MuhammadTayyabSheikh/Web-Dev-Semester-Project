@@ -10,7 +10,7 @@ export const listNotes = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    const { data } = await axios.get("http://localhost:5000/api/notes", config);
+    const { data } = await axios.get("https://two-note-backend.herokuapp.com/api/notes/", config);
     dispatch({ type: NOTES_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -33,7 +33,7 @@ export const createNoteAction = (title, content, category) => async (dispatch, g
       },
     }
     const { data } = await axios.post(
-      "https://two-note-backend.herokuapp.com/notes/create",
+      "https://two-note-backend.herokuapp.com/api/notes/create/",
       { title, content, category },
       config
     );
@@ -63,11 +63,11 @@ export const updateNoteAction = (id, title, content, category) => async (dispatc
       },
     }
     const { data } = await axios.put(
-      `http://localhost:5000/api/notes/${id}`,
+      `https://two-note-backend.herokuapp.com/api/notes/${id}`,
       { id, title, content, category },
       config
     );
-
+    
     dispatch({
       type: NOTES_UPDATE_SUCCESS,
       payload: data
