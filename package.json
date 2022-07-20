@@ -1,27 +1,51 @@
 {
-	"name": "semester-project",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.js",
-	"scripts": {
-		"client": "npm start --prefix frontend",
-		"dev": "concurrently \"npm run client\"",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix frontend && npm run build --prefix frontend"
-	},
-	"keywords": [],
-	"author": "Muhammad Tayyab",
-	"license": "ISC",
+	"name": "two-note",
+	"version": "0.1.0",
+	"private": true,
 	"dependencies": {
-		"bcryptjs": "^2.4.3",
-		"concurrently": "^7.2.1",
+		"@reduxjs/toolkit": "^1.8.2",
+		"@testing-library/jest-dom": "^5.16.4",
+		"@testing-library/react": "^13.3.0",
+		"@testing-library/user-event": "^13.5.0",
+		"axios": "^0.27.2",
+		"bs-custom-file-input": "^1.3.4",
+		"cdbreact": "^1.5.1",
 		"cors": "^2.8.5",
-		"dotenv": "^16.0.1",
-		"express": "^4.18.1",
-		"express-async-handler": "^1.2.0",
-		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^6.3.5"
+		"dayjs": "^1.11.2",
+		"react": "^18.2.0",
+		"react-bootstrap": "^1.6.5",
+		"react-dom": "^18.2.0",
+		"react-markdown": "^8.0.3",
+		"react-redux": "^8.0.2",
+		"react-router-dom": "^6.3.0",
+		"react-scripts": "5.0.1",
+		"redux": "^4.2.0",
+		"redux-devtools-extension": "^2.13.9",
+		"redux-thunk": "^2.4.1",
+		"web-vitals": "^2.1.4"
 	},
-	"devDependencies": {
-		"nodemon": "^2.0.16"
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
 	}
 }
