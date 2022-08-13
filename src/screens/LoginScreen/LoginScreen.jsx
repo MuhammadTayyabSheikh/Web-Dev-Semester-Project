@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import MainScreen from "../../components/MainScreen";
-import Loading from "../../components/Loading";
-import ErrorMessage from "../../components/ErrorMessage";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../actions/userActions";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
+import MainScreen from '../../components/MainScreen';
+import Loading from '../../components/Loading';
+import ErrorMessage from '../../components/ErrorMessage';
+import { login } from '../../actions/userActions';
 
 const LoginScreen = () => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const LoginScreen = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (userInfo) navigate("/mynotes");
+		if (userInfo) navigate('/mynotes');
 	}, [userInfo, navigate]);
 
 	const handleSubmit = async (e) => {
@@ -31,7 +31,7 @@ const LoginScreen = () => {
 	};
 
 	return (
-		<MainScreen title={"Login"}>
+		<MainScreen title={'Login'}>
 			<div className='d-flex flex-column'>
 				{error && <ErrorMessage>{error.response.data.message}</ErrorMessage>}
 				{loading && <Loading size={100} />}
@@ -63,7 +63,7 @@ const LoginScreen = () => {
 					<Col>
 						<span className='text-primary'>Don't have an account?</span>
 						<Link to='/register' className='text-info'>
-							{" "}
+							{' '}
 							Register here
 						</Link>
 					</Col>
