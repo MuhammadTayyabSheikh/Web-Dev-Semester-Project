@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { Accordion, Badge, Button, Card } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import MainScreen from "../../components/MainScreen";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteNoteAction, listNotes } from "../../actions/notesActions";
-import Loading from "../../components/Loading";
-import ErrorMessage from "../../components/ErrorMessage";
-import ReactMarkdown from "react-markdown";
+import { useEffect } from 'react';
+import { Accordion, Badge, Button, Card } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import MainScreen from '../../components/MainScreen';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteNoteAction, listNotes } from '../../actions/notesActions';
+import Loading from '../../components/Loading';
+import ErrorMessage from '../../components/ErrorMessage';
+import ReactMarkdown from 'react-markdown';
 
 const MyNotes = ({ search }) => {
 	const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const MyNotes = ({ search }) => {
 	} = noteDelete;
 
 	const deleteHandler = (id) => {
-		if (window.confirm("Are you sure you want to delete this note?")) {
+		if (window.confirm('Are you sure you want to delete this note?')) {
 			dispatch(deleteNoteAction(id));
 		}
 	};
@@ -39,7 +39,7 @@ const MyNotes = ({ search }) => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		dispatch(listNotes());
-		if (!userInfo) navigate("/");
+		if (!userInfo) navigate('/');
 	}, [
 		dispatch,
 		navigate,
@@ -62,7 +62,7 @@ const MyNotes = ({ search }) => {
 			{notes
 				?.reverse()
 				.filter((filteredNote) =>
-					filteredNote.title.toLowerCase().includes(search.toLowerCase())
+					filteredNote.title.toLowerCase().includes(search.toLowerCase()),
 				)
 				.map((note) => (
 					<Accordion>
@@ -70,14 +70,13 @@ const MyNotes = ({ search }) => {
 							<Card.Header className='d-flex'>
 								<span
 									style={{
-										color: "#fff",
-										textDecoration: "none",
+										color: '#fff',
+										textDecoration: 'none',
 										flex: 1,
-										cursor: "pointer",
-										alignSelf: "center",
-										fontSize: "1.5rem",
-									}}
-								>
+										cursor: 'pointer',
+										alignSelf: 'center',
+										fontSize: '1.5rem',
+									}}>
 									<Accordion.Toggle as={Card.Title} variant='link' eventKey='0'>
 										{note.title}
 									</Accordion.Toggle>
@@ -89,8 +88,7 @@ const MyNotes = ({ search }) => {
 									<Button
 										variant='warning'
 										className='mx-2'
-										onClick={() => deleteHandler(note._id)}
-									>
+										onClick={() => deleteHandler(note._id)}>
 										Delete
 									</Button>
 								</div>
@@ -101,10 +99,12 @@ const MyNotes = ({ search }) => {
 										Category - {note.category}
 									</Badge>
 									<blockquote className='blockquote mb-0'>
-										<ReactMarkdown className='text-light'>{note.content}</ReactMarkdown>
+										<ReactMarkdown className='text-light'>
+											{note.content}
+										</ReactMarkdown>
 										<small>
 											<footer className='mt-1 mb-0 blockquote-footer small'>
-												Created on{" "}
+												Created on{' '}
 												<cite title='Source Title'>
 													{note.createdAt.substring(0, 10)}
 												</cite>

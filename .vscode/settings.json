@@ -20,7 +20,8 @@
 		"sideBar.border": "#e8b000",
 		"statusBar.border": "#b58900",
 		"statusBar.debuggingBorder": "#002cb5",
-		"titleBar.border": "#b58900"
+		"titleBar.border": "#b58900",
+		"commandCenter.border": "#15202b99"
 	},
 	"peacock.color": "#b58900"
 }
