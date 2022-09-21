@@ -1,4 +1,5 @@
-import { Spinner } from "react-bootstrap";
+import React from 'react';
+import { Spinner } from 'react-bootstrap';
 
 const Loading = ({ size = 100 }) => {
 	return (
@@ -9,8 +10,7 @@ const Loading = ({ size = 100 }) => {
 					height: size,
 				}}
 				animation='border'
-				variant='primary'
-			></Spinner>
+				variant='primary'></Spinner>
 		</div>
 	);
 };

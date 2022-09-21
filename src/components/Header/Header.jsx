@@ -1,3 +1,4 @@
+import React from 'react';
 import {
 	Container,
 	Form,
@@ -65,7 +66,7 @@ const Header = ({ setSearch }) => {
 									<Link to='/mynotes'>My Notes</Link>
 								</Nav.Link>
 								<NavDropdown
-									title={userInfo?.name}
+									title={userInfo.name}
 									id='navbarScrollingDropdown'
 								>
 									<NavDropdown.Item href='/profile '>

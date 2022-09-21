@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { Accordion, Badge, Button, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -59,12 +60,9 @@ const MyNotes = ({ search }) => {
 			)}
 			{error && <ErrorMessage variant='warning'>{error}</ErrorMessage>}
 			{loading && <Loading />}
-			{notes
-				?.reverse()
-				.filter((filteredNote) =>
+			{notes && notes.filter((filteredNote) =>
 					filteredNote.title.toLowerCase().includes(search.toLowerCase()),
-				)
-				.map((note) => (
+				).reverse().map((note) => (
 					<Accordion>
 						<Card className='my-3'>
 							<Card.Header className='d-flex'>
@@ -104,10 +102,10 @@ const MyNotes = ({ search }) => {
 										</ReactMarkdown>
 										<small>
 											<footer className='mt-1 mb-0 blockquote-footer small'>
-												Created on{' '}
+												{/* Created on{' '}
 												<cite title='Source Title'>
 													{note.createdAt.substring(0, 10)}
-												</cite>
+												</cite> */}
 											</footer>
 										</small>
 									</blockquote>

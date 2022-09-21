@@ -1,20 +1,21 @@
-import MainScreen from "./../../components/MainScreen";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
-import ErrorMessage from "./../../components/ErrorMessage";
-import { useNavigate } from "react-router-dom";
-import { updateUser } from "../../actions/userActions";
-import "./profileScreen.css";
+import React from 'react';
+import MainScreen from './../../components/MainScreen';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { Row, Col, Form, Button } from 'react-bootstrap';
+import ErrorMessage from './../../components/ErrorMessage';
+import { useNavigate } from 'react-router-dom';
+import { updateUser } from '../../actions/userActions';
+import './profileScreen.css';
 
 const ProfileScreen = () => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [img, setImg] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [imgMessage, setImgMessage] = useState("");
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [img, setImg] = useState('');
+	const [confirmPassword, setConfirmPassword] = useState('');
+	const [imgMessage, setImgMessage] = useState('');
 	const dispatch = useDispatch();
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
@@ -24,7 +25,7 @@ const ProfileScreen = () => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (!userInfo) {
-			navigate("/");
+			navigate('/');
 		} else {
 			setName(userInfo.name);
 			setEmail(userInfo.email);
@@ -34,18 +35,18 @@ const ProfileScreen = () => {
 
 	const postDetails = (imgs) => {
 		if (!imgs) {
-			return setImgMessage("Please upload an image");
+			return setImgMessage('Please upload an image');
 		}
 
 		setImgMessage(null);
 
-		if (img.type === "image/png" || imgs.type === "image/jpeg") {
+		if (img.type === 'image/png' || imgs.type === 'image/jpeg') {
 			const data = new FormData();
-			data.append("file", imgs);
-			data.append("upload_preset", "twoNote");
-			data.append("cloud_name", "mainiac");
-			fetch("https://api.cloudinary.com/v1_1/mainiac/image/upload", {
-				method: "post",
+			data.append('file', imgs);
+			data.append('upload_preset', 'twoNote');
+			data.append('cloud_name', 'mainiac');
+			fetch('https://api.cloudinary.com/v1_1/mainiac/image/upload', {
+				method: 'post',
 				body: data,
 			})
 				.then((res) => res.json())
@@ -57,7 +58,7 @@ const ProfileScreen = () => {
 					console.log(err);
 				});
 		} else {
-			return setImgMessage("Please upload an image");
+			return setImgMessage('Please upload an image');
 		}
 	};
 
@@ -157,8 +158,7 @@ const ProfileScreen = () => {
 					</Col>
 					<Col
 						style={{}}
-						className='d-flex align-items-center justify-content-center'
-					>
+						className='d-flex align-items-center justify-content-center'>
 						<img
 							className='w-75 align-self-start mt-2'
 							src={userInfo.img}

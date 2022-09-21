@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import ErrorMessage from "../../components/ErrorMessage";
-import MainScreen from "../../components/MainScreen";
-import ReactMarkdown from "react-markdown";
-import Loading from "../../components/Loading";
-import { createNoteAction } from "../../actions/notesActions";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useState } from 'react';
+import { Button, Card, Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import ErrorMessage from '../../components/ErrorMessage';
+import MainScreen from '../../components/MainScreen';
+import ReactMarkdown from 'react-markdown';
+import Loading from '../../components/Loading';
+import { createNoteAction } from '../../actions/notesActions';
+import { useNavigate } from 'react-router-dom';
 
 function CreateNote() {
-	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
-	const [category, setCategory] = useState("");
+	const [title, setTitle] = useState('');
+	const [content, setContent] = useState('');
+	const [category, setCategory] = useState('');
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -20,9 +21,9 @@ function CreateNote() {
 	const { loading, error } = noteCreate;
 
 	const resetHandler = () => {
-		setTitle("");
-		setContent("");
-		setCategory("");
+		setTitle('');
+		setContent('');
+		setCategory('');
 	};
 
 	const handleSubmit = (e) => {
@@ -33,11 +34,11 @@ function CreateNote() {
 		}
 		resetHandler();
 
-		navigate("/mynotes");
+		navigate('/mynotes');
 	};
 
 	return (
-		<MainScreen title={"Create a Note"}>
+		<MainScreen title={'Create a Note'}>
 			<Card>
 				<Card.Header>Create a new Note</Card.Header>
 				<Card.Body>
