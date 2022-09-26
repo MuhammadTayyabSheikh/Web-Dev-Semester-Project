@@ -1,15 +1,15 @@
 import React from 'react';
-import { Button, Container, Row } from "react-bootstrap";
-import "./LandingPage.css";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Button, Container, Row } from 'react-bootstrap';
+import './LandingPage.css';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
 	const navigate = useNavigate();
 	useEffect(() => {
-		const userInfo = localStorage.getItem("userInfo");
+		const userInfo = localStorage.getItem('userInfo');
 		if (userInfo) {
-			navigate("/mynotes");
+			navigate('/mynotes');
 		}
 	}, [navigate]);
 
@@ -25,16 +25,15 @@ const LandingPage = () => {
 						<div className='buttonContainer'>
 							<a href='/login'>
 								<Button size='lg' variant='dark' className='landingButton'>
-									Login
+									<Link to='/login'>Login</Link>
 								</Button>
 							</a>
 							<a href='/register'>
 								<Button
 									size='lg'
 									variant='outline-dark'
-									className='landingButton'
-								>
-									Sign Up
+									className='landingButton'>
+									<Link to='/register'>Sign Up</Link>
 								</Button>
 							</a>
 						</div>
