@@ -24,17 +24,21 @@ const LandingPage = () => {
 						</div>
 						<div className='buttonContainer'>
 							<a href='/login'>
-								<Button size='lg' variant='dark' className='landingButton'>
-									<Link to='/login'>Login</Link>
-								</Button>
+								<Link to='/login'>
+									<Button size='lg' variant='dark' className='landingButton'>
+										Login
+									</Button>
+								</Link>
 							</a>
 							<a href='/register'>
-								<Button
-									size='lg'
-									variant='outline-dark'
-									className='landingButton'>
-									<Link to='/register'>Sign Up</Link>
-								</Button>
+								<Link to='/register'>
+									<Button
+										size='lg'
+										variant='outline-dark'
+										className='landingButton'>
+										Sign Up
+									</Button>
+								</Link>
 							</a>
 						</div>
 					</div>
