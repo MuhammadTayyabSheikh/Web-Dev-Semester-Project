@@ -34,7 +34,7 @@ const LoginScreen = () => {
 	return (
 		<MainScreen title={'Login'}>
 			<div className='d-flex flex-column'>
-				{error && <ErrorMessage>{error.response.data.message}</ErrorMessage>}
+				{/* {error && <ErrorMessage>{error?.response?.data?.message}</ErrorMessage>} */}
 				{loading && <Loading size={100} />}
 				<Form onSubmit={handleSubmit}>
 					<Form.Group className='mb-3' controlId='formBasicEmail'>
